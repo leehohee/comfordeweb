@@ -48,6 +48,18 @@
                     
                 
             </v-form>
+            <v-row>
+              <v-col cols="9"
+                ><nuxt-link to="/signup"
+                  ><span class="blue--text font-weight-bold text--darken-4"
+                    >아직 회원이 아니신가요?</span
+                  ></nuxt-link
+                ></v-col
+              >
+              <v-col class="d-flex justify-center align-center" cols="3"
+                ><v-icon large>mdi-chevron-right</v-icon></v-col
+              >
+            </v-row>
         </v-card>
     </v-container>
     <v-container fluid v-else>
@@ -56,7 +68,7 @@
                 <h4 class="mb-2">{{ me.nickname }} 로그인되었습니다.</h4>
                 <v-btn @click="onLogOut">로그아웃</v-btn>
                 <v-row width="100%" class="mt-5">
-                    <PostForm />
+                    
                 </v-row>
             </v-container>
         </v-card>
@@ -106,6 +118,10 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
+
+a {
+    text-decoration: none;
+}
 
 </style>

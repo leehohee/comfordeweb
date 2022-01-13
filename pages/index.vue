@@ -42,9 +42,8 @@
         <v-row>
           <v-col class="border-top-solid border-bottom-solid">
             <div class="d-flex justify-space-around" max-width="100%">
-              <h5 class="inline-block"><a href="#">서비스 소개</a></h5>
-              <h5 class="inline-block"><a href="#">FAQ</a></h5>
-              <h5 class="inline-block"> <nuxt-link to="/termsofuse">고객센터</nuxt-link></h5>
+              <h5 class="inline-block"><nuxt-link to="/termsofuse">이용약관</nuxt-link></h5>
+              <h5 class="inline-block"><nuxt-link to="/privacy">개인정보처리방침</nuxt-link></h5>
             </div>
           </v-col>
         </v-row>
