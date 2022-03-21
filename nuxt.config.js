@@ -57,7 +57,7 @@ module.exports = {
                 
                 },
             },
-            
+        
         },
         customVariables: ['~/assets/variables.scss'],
         treeShake: true
@@ -67,8 +67,8 @@ module.exports = {
 
     ],
     axios:{
-        browserBaseURL: 'http://localhost:3065/',
-        baseURL: 'http://localhost:3065',
+        browserBaseURL: 'http://api.comforde.co.kr:3065/',
+        baseURL: 'http://api.comforde.co.kr:3065',
         https: false,
     },
     server:{

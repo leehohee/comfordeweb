@@ -14,28 +14,56 @@
       ></v-carousel-item>
     </v-carousel>
 
+
+
     <v-row class="mt-5" dense>
         <v-col
-          v-for="card in cards"
-          :key="card.title"
+          v-for="(item, i) in mainItems" :key="i"
+          
           :cols="3"
         >
           <v-card class="ma-2">
+            <nuxt-link :to="'/item/' + item.id">
             <v-img
-              :src="card.src"
+              :src="`http://api.comforde.co.kr/${item.Images[0].src}`"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             >
+            
               <v-card-title></v-card-title>
             </v-img>
-            <v-card-title>상품준비중</v-card-title>
-            <v-card-subtitle>상품준비중입니다.</v-card-subtitle>
-            <v-card-text>0원</v-card-text>
+            </nuxt-link>
+            <nuxt-link :to="'/item/' + item.id">
+            <div class="textheight">
+            <v-card-subtitle>{{item.title}}</v-card-subtitle>
+            </div>
+            </nuxt-link>
+            
+            <v-row align="center" class="ml-2">
+              <v-rating
+                :value="star"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="16"
+              ></v-rating>
+
+              <div class="pt-1 grey--text ms-1">{{star}} ({{usercount}})</div>
+            </v-row>
+            
+            <v-card-actions>
+              <v-btn class="white mt-0 pa-0 pb-2" elevation="0">
+                <span>{{item.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span><span>원</span>
+              </v-btn>
+            </v-card-actions>
             
           </v-card>
         </v-col>
       </v-row>
+
+
 
     <v-row>
       <v-container fluid>
@@ -67,6 +95,9 @@ export default {
           return 300;
       }
     },
+    mainItems(){
+            return this.$store.state.posts.mainItems;
+        },
   },
   data() {
     return {
@@ -97,6 +128,18 @@ export default {
       
     };
   },
+  fetch({store}){  //fetch는 보통 store 넣을때 많이 쓴다.
+      return store.dispatch('posts/loadItems', { reset: true});
+  },
+  created() {
+      this.$store.dispatch('posts/loadItems', { reset: true});
+  },
+  mounted(){
+      this.star = 5.0;  
+      
+      this.usercount = 1;
+      
+  },
   
 };
 </script>
@@ -111,5 +154,9 @@ a {
 }
 .border-bottom-solid {
   border-bottom: solid #e6e6e6 1px !important;
+}
+.textheight{
+  height:80px;
+  
 }
 </style>
